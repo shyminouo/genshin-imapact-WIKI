@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sitePath } from '../lib/site';
+---
+<BaseLayout title="關於專案">
+  <section class="shell about-page">
+    <div class="eyebrow"><span class="eyebrow-dash"></span> ABOUT THE ARCHIVE</div>
+    <h1>讓角色資料<br/><em>隨著探索一同生長。</em></h1>
+    <p class="hero-lede">這是一份課堂展示用的非官方原神角色圖鑑。核心並非只做完首頁，而是建立一套規範，讓 AI 在未來能持續加入新的角色頁面。</p>
+    <div class="about-grid">
+      <article><span>01</span><h2>Raw Sources</h2><p>保存官方公告與資料來源的登記；原始內容不被 AI 任意改寫。</p></article>
+      <article><span>02</span><h2>LLM Wiki</h2><p>以結構化 Markdown 維護角色資料，並持續更新關聯與索引。</p></article>
+      <article><span>03</span><h2>Astro Website</h2><p>同一份角色 Markdown 透過共用元件，自動生成角色卡片與詳情頁。</p></article>
+      <article><span>04</span><h2>AGENTS.md</h2><p>規範 AI 的新增流程、命名、來源、驗證與紀錄，降低後續維護成本。</p></article>
+    </div>
+    <div class="about-cta"><h2>下一個角色，沿用同一套規則。</h2><p>新增 Markdown → 更新索引與關聯 → 驗證 → GitHub Pages 部署。</p><a class="hero-link" href={sitePath()}>返回角色圖鑑 ↗</a></div>
+  </section>
+</BaseLayout>

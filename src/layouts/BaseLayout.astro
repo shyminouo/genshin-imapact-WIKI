@@ -1,0 +1,29 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+import { sitePath } from '../lib/site';
+interface Props { title: string; description?: string; }
+const { title, description = '以 LLM Wiki 方法持續整理的繁體中文非官方原神角色圖鑑。' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#111926" />
+    <link rel="icon" href={sitePath('favicon.svg')} type="image/svg+xml" />
+    <title>{title} | 提瓦特觀測站</title>
+  </head>
+  <body>
+    <div class="background-stars" aria-hidden="true"></div>
+    <Header />
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <span>✦ 提瓦特觀測站 <small>TEYVAT CHARACTER ARCHIVE</small></span>
+        <p>非官方教學專案，與 HoYoverse 無關。遊戲角色與商標歸原權利人所有。</p>
+      </div>
+    </footer>
+  </body>
+</html>

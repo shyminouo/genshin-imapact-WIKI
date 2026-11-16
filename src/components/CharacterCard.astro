@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { elementClass, elementSymbols, sitePath } from '../lib/site';
+interface Props { character: CollectionEntry<'characters'>; }
+const { character } = Astro.props;
+const data = character.data;
+---
+<article class={`character-card ${elementClass[data.element]}`} data-character data-name={data.name.toLowerCase()} data-element={data.element} data-region={data.region}>
+  <a class="card-link" href={sitePath(`characters/${character.id}/`)} aria-label={`查看 ${data.name} 角色介紹`}>
+    <div class="card-art" aria-hidden="true">
+      <span class="art-halo"></span><span class="art-sigil">{elementSymbols[data.element]}</span>
+      <span class="art-corner top-left">✧</span><span class="art-corner bottom-right">✧</span>
+      <span class="card-watermark">{String(data.rarity).padStart(2,'0')} / VII</span>
+    </div>
+    <div class="card-body">
+      <div class="card-kicker"><span>{data.region}</span><span class="stars">{'★'.repeat(data.rarity)}</span></div>
+      <h3>{data.name}</h3>
+      <p>{data.tagline}</p>
+      <div class="card-footer"><span class="element-pill">{elementSymbols[data.element]} {data.element}元素</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+    </div>
+  </a>
+</article>
