@@ -1,0 +1,16 @@
+{
+  "name": "genshin-wiki-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run check:data && astro build",
+    "preview": "astro preview",
+    "check:data": "node scripts/check-data.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "yaml": "^2.0.0"
+  }
+}
