@@ -1,0 +1,16 @@
+---
+import { sitePath } from '../lib/site';
+const current = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href={sitePath()} aria-label="返回角色觀測站首頁">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span><span class="brand-name">提瓦特觀測站</span><small>TEYVAT CHARACTER ARCHIVE</small></span>
+    </a>
+    <nav aria-label="主選單" class="main-nav">
+      <a href={sitePath()} aria-current={current === sitePath() ? 'page' : undefined}>角色圖鑑</a>
+      <a href={sitePath('about/')} aria-current={current.includes('/about/') ? 'page' : undefined}>關於專案</a>
+    </nav>
+  </div>
+</header>

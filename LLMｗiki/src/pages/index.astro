@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CharacterCard from '../components/CharacterCard.astro';
+import { getCollection } from 'astro:content';
+import { sitePath } from '../lib/site';
+const characters = (await getCollection('characters')).sort((a,b) => a.data.name.localeCompare(b.data.name, 'zh-Hant'));
+const regions = [...new Set(characters.map(c => c.data.region))].sort((a,b) => a.localeCompare(b,'zh-Hant'));
+const elements = ['火', '水', '雷', '冰', '風', '岩', '草'];
+---
+<BaseLayout title="角色圖鑑" description="探索提瓦特角色故事、元素、國家與人物關係，並了解 AI 如何持續維護這份 Wiki。">
+  <section class="hero shell">
+    <div class="hero-left">
+      <div class="eyebrow"><span class="eyebrow-dash"></span>THE WORLD OF TEYVAT</div>
+      <h1>每一位旅人，<br/><em>都有值得收藏的故事。</em></h1>
+      <p class="hero-lede">一座持續生長的角色觀測站。從元素與國度出發，沿著角色之間的連結，漫遊提瓦特的每段相遇。</p>
+      <a class="hero-link" href="#characters">探索角色 <span aria-hidden="true">↘</span></a>
+    </div>
+    <div class="hero-ornament" aria-hidden="true"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><span class="hero-core">✧</span><span class="orbit-text">TEYVAT • ARCHIVE •</span></div>
+  </section>
+  <section class="catalog-section shell" id="characters" aria-label="角色列表">
+    <div class="section-topline"><span>01 / CHARACTER ARCHIVE</span><span>EXPLORE THE ATLAS</span></div>
+    <div class="section-heading"><div><h2>角色圖鑑</h2><p>依元素、國度或名字探索角色</p></div><span class="count-bubble">收錄 <strong id="visible-count">{characters.length}</strong> / {characters.length} 名</span></div>
+    <div class="filters">
+      <label class="search-field"><span class="visually-hidden">搜尋角色姓名</span><span aria-hidden="true">⌕</span><input id="character-search" type="search" placeholder="搜尋角色名稱..." autocomplete="off" /></label>
+      <label class="filter-field">元素 <select id="element-filter" aria-label="元素篩選"><option value="">全部元素</option>{elements.map(element => <option value={element}>{element}元素</option>)}</select></label>
+      <label class="filter-field">國度 <select id="region-filter" aria-label="國度篩選"><option value="">全部國度</option>{regions.map(region => <option value={region}>{region}</option>)}</select></label>
+      <button class="reset-button" type="button" id="filter-reset">重設</button>
+    </div>
+    <div class="character-grid" id="character-grid">{characters.map(character => <CharacterCard character={character} />)}</div>
+    <p class="empty-state" id="empty-state" hidden>找不到符合條件的角色。試著調整關鍵字或篩選條件。</p>
+  </section>
+  <section class="below-note shell"><span class="note-icon" aria-hidden="true">✦</span><div><h2>一本會持續生長的 Wiki</h2><p>角色資料保存在 Markdown，新增角色時可以套用同一套規範自動形成新頁面。這是供課堂展示的非官方小型範例。</p></div><a href={sitePath('about/')}>了解運作方式 →</a></section>
+  <script>
+    const search = document.querySelector<HTMLInputElement>('#character-search');
+    const element = document.querySelector<HTMLSelectElement>('#element-filter');
+    const region = document.querySelector<HTMLSelectElement>('#region-filter');
+    const reset = document.querySelector<HTMLButtonElement>('#filter-reset');
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-character]')];
+    const count = document.querySelector<HTMLElement>('#visible-count');
+    const empty = document.querySelector<HTMLElement>('#empty-state');
+    function updateFilters() {
+      const q = search?.value.trim().toLocaleLowerCase() ?? '';
+      const e = element?.value ?? '';
+      const r = region?.value ?? '';
+      let visible = 0;
+      for (const card of cards) {
+        const show = (!q || (card.dataset.name ?? '').includes(q)) && (!e || card.dataset.element === e) && (!r || card.dataset.region === r);
+        card.hidden = !show;
+        if (show) visible += 1;
+      }
+      if (count) count.textContent = String(visible);
+      if (empty) empty.hidden = visible !== 0;
+    }
+    search?.addEventListener('input', updateFilters);
+    element?.addEventListener('change', updateFilters);
+    region?.addEventListener('change', updateFilters);
+    reset?.addEventListener('click', () => {
+      if (search) search.value = '';
+      if (element) element.value = '';
+      if (region) region.value = '';
+      updateFilters(); search?.focus();
+    });
+  </script>
+</BaseLayout>
