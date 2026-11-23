@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run check:data && npm run check:tutorial && astro build",
+    "build": "npm run check:data && npm run check:concepts && npm run check:tutorial && astro build",
     "preview": "astro preview",
     "check:data": "node scripts/check-data.mjs",
+    "check:concepts": "node scripts/check-concepts.mjs",
     "check:tutorial": "node scripts/check-tutorial.mjs"
   },
   "dependencies": {

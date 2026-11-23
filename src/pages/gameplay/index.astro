@@ -1,0 +1,316 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseDocument } from 'yaml';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sitePath } from '../../lib/site';
+import '../../styles/gameplay.css';
+
+interface ConceptData {
+  title: string;
+  slug: string;
+  summary: string;
+  category: string;
+  categoryLabel: string;
+  updatedAt: string;
+  sourceIds: string[];
+  relatedConcepts: string[];
+  relatedCharacters: string[];
+  definition: string;
+  mechanics: string[];
+  misconceptions: string;
+}
+
+const conceptsDir = path.resolve('wiki/concepts');
+const files = fs.readdirSync(conceptsDir).filter(f => f.endsWith('.md'));
+
+function getCategory(slug: string): { key: string; label: string } {
+  if (['spiral-abyss', 'imaginarium-theater'].includes(slug)) {
+    return { key: 'endgame', label: '👑 Endgame 高難' };
+  }
+  if (['elements', 'elemental-reactions', 'weapons', 'character-roles', 'team-building'].includes(slug)) {
+    return { key: 'combat', label: '⚔️ 核心戰鬥' };
+  }
+  if (['open-world-exploration', 'seasonal-events'].includes(slug)) {
+    return { key: 'world', label: '🧭 大世界與冒險' };
+  }
+  if (['serenitea-pot', 'genius-invokation-tcg', 'fishing-system'].includes(slug)) {
+    return { key: 'casual', label: '🏡 家園生活' };
+  }
+  return { key: 'progression', label: '⚙️ 養成與製造' };
+}
+
+const concepts: ConceptData[] = files.map(file => {
+  const raw = fs.readFileSync(path.join(conceptsDir, file), 'utf8');
+  const match = raw.match(/^---\s*\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)(([\s\S]*))$/);
+  const frontmatter = match ? parseDocument(match[1]).toJS() : {};
+  const body = match ? match[2] : raw;
+
+  // Extract sections
+  const defMatch = body.match(/## 基本定義\s*\r?\n\s*([\s\S]*?)(?=\r?\n## |\z)/);
+  const mechMatch = body.match(/## 機制與例子\s*\r?\n\s*([\s\S]*?)(?=\r?\n## |\z)/);
+  const misMatch = body.match(/## 常見誤解\s*\r?\n\s*([\s\S]*?)(?=\r?\n## |\z)/);
+
+  const definition = defMatch ? defMatch[1].trim() : '';
+  const mechanicsText = mechMatch ? mechMatch[1].trim() : '';
+  const misconceptions = misMatch ? misMatch[1].trim() : '';
+
+  // Parse points from mechanics
+  const mechanics = mechanicsText
+    .split(/\r?\n/)
+    .filter(line => line.trim().startsWith('- ') || /^\d+\.\s/.test(line.trim()))
+    .map(line => line.replace(/^[-*]\s+|\d+\.\s+/, '').trim())
+    .slice(0, 3);
+
+  const cat = getCategory(frontmatter.slug || file.replace('.md', ''));
+
+  return {
+    title: frontmatter.title || '',
+    slug: frontmatter.slug || '',
+    summary: frontmatter.summary || '',
+    category: cat.key,
+    categoryLabel: cat.label,
+    updatedAt: frontmatter.updatedAt || '',
+    sourceIds: frontmatter.sourceIds || [],
+    relatedConcepts: frontmatter.relatedConcepts || [],
+    relatedCharacters: frontmatter.relatedCharacters || [],
+    definition,
+    mechanics: mechanics.length > 0 ? mechanics : [definition.slice(0, 80) + '...'],
+    misconceptions,
+  };
+}).sort((a, b) => {
+  // Sort by category order then title
+  const order = ['endgame', 'combat', 'world', 'casual', 'progression'];
+  const diff = order.indexOf(a.category) - order.indexOf(b.category);
+  return diff !== 0 ? diff : a.title.localeCompare(b.title, 'zh-Hant');
+});
+
+const totalConcepts = concepts.length;
+---
+
+<BaseLayout title="提瓦特玩法介紹與系統指南" description="探索原神大世界、深境螺旋、幻想真境劇詩、塵歌壺、七聖召喚與養成資源等多元核心玩法。">
+  <div class="shell gameplay-page">
+    <!-- 頂部標題區 -->
+    <header class="gameplay-hero">
+      <div class="gameplay-eyebrow">
+        <span>TEYVAT ADVENTURE GUIDE</span>
+        <span style="opacity:0.4;">/</span>
+        <span>GAMEPLAY OVERVIEW</span>
+      </div>
+      <h1 class="gameplay-title">提瓦特冒險指南：<em>核心系統與玩法全覽</em></h1>
+      <p class="gameplay-lede">
+        《原神》不僅擁有獨特的元素連鎖戰鬥，更建構了廣袤的大世界探險、豐富的家園建造、常駐桌面卡牌、生活垂釣與兩大多層次 Endgame 挑戰。本專頁整合 Wiki 知識庫收錄之 15 大核心機制，帶你深入探索提瓦特的無限可能。
+      </p>
+    </header>
+
+    <!-- 控制與篩選列 -->
+    <section class="gameplay-controls" aria-label="玩法分類與搜尋">
+      <div class="search-and-stats">
+        <div class="gameplay-search-box">
+          <span class="gameplay-search-icon" aria-hidden="true">⌕</span>
+          <label for="gameplay-search" class="visually-hidden">搜尋玩法或機制名稱</label>
+          <input
+            id="gameplay-search"
+            type="search"
+            placeholder="搜尋玩法名稱（如：深淵、劇詩、塵歌壺、聖遺物、釣魚...）"
+            autocomplete="off"
+          />
+        </div>
+        <div style="font-size:13px; color:var(--muted);">
+          收錄 <strong id="visible-count" style="color:var(--gold);">{totalConcepts}</strong> / {totalConcepts} 則玩法知識庫
+        </div>
+      </div>
+
+      <!-- 分類標籤頁切換 -->
+      <div class="category-tabs" role="tablist" aria-label="玩法主題篩選">
+        <button type="button" class="cat-tab-btn active" data-cat="all" role="tab" aria-selected="true">
+          全部玩法 ({totalConcepts})
+        </button>
+        <button type="button" class="cat-tab-btn" data-cat="endgame" role="tab" aria-selected="false">
+          👑 Endgame 高難 (2)
+        </button>
+        <button type="button" class="cat-tab-btn" data-cat="combat" role="tab" aria-selected="false">
+          ⚔️ 核心戰鬥 (5)
+        </button>
+        <button type="button" class="cat-tab-btn" data-cat="world" role="tab" aria-selected="false">
+          🧭 大世界與冒險 (2)
+        </button>
+        <button type="button" class="cat-tab-btn" data-cat="casual" role="tab" aria-selected="false">
+          🏡 家園生活 (3)
+        </button>
+        <button type="button" class="cat-tab-btn" data-cat="progression" role="tab" aria-selected="false">
+          ⚙️ 養成與製造 (3)
+        </button>
+      </div>
+    </section>
+
+    <!-- 玩法卡片展示網格 -->
+    <section class="gameplay-grid" id="gameplay-grid" aria-label="玩法列表">
+      {concepts.map((c) => (
+        <article
+          class="gameplay-card"
+          data-category={c.category}
+          data-search={`${c.title} ${c.slug} ${c.summary} ${c.definition} ${c.sourceIds.join(' ')}`.toLowerCase()}
+          id={`concept-${c.slug}`}
+        >
+          <div>
+            <header class="gameplay-card-header">
+              <div class="card-topline">
+                <span class={`category-tag ${c.category}`}>{c.categoryLabel}</span>
+                <span class="concept-slug">{c.slug}</span>
+              </div>
+              <h2 class="gameplay-card-title">{c.title}</h2>
+              <p class="gameplay-card-summary">{c.summary}</p>
+            </header>
+
+            <div class="gameplay-card-body">
+              <div class="card-section-label">✦ 核心機制摘要</div>
+              <ul class="card-points-list">
+                {c.mechanics.map((m) => (
+                  <li>{m}</li>
+                ))}
+              </ul>
+
+              {c.relatedCharacters.length > 0 && (
+                <div style="margin-top:12px;">
+                  <div class="card-section-label">✧ 關聯角色示範</div>
+                  <div class="card-badges-row">
+                    {c.relatedCharacters.map((ch) => (
+                      <a href={sitePath(`characters/${ch}/`)} class="char-badge-pill" title={`檢視角色：${ch}`}>
+                        👤 {ch}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <!-- 展開詳情區 -->
+            <div class="gameplay-card-detail" id={`detail-${c.slug}`}>
+              <div class="detail-block">
+                <div class="detail-block-title">📖 基本定義與世界觀</div>
+                <p class="detail-block-p">{c.definition}</p>
+              </div>
+
+              {c.misconceptions && (
+                <div class="detail-block" style="margin-top:10px;">
+                  <div class="detail-block-title" style="color:#f87171;">💡 常見誤解與避坑</div>
+                  <p class="detail-block-p" style="font-size:12px;">{c.misconceptions}</p>
+                </div>
+              )}
+            </div>
+
+            <!-- 卡片底部狀態列 -->
+            <footer class="gameplay-card-footer">
+              <div>
+                <span style="color:var(--muted); font-size:11px;">引證：</span>
+                <span class="card-source-id">[{c.sourceIds.join(', ')}]</span>
+              </div>
+              <button
+                type="button"
+                class="card-expand-btn"
+                data-target={`detail-${c.slug}`}
+                aria-expanded="false"
+              >
+                <span>展開詳情</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+            </footer>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <!-- 空搜尋提示 -->
+    <p class="empty-state" id="empty-state" hidden style="margin-top:30px;">
+      找不到符合條件的玩法。請嘗試更換篩選分類或搜尋關鍵字。
+    </p>
+
+    <!-- 底部導流橫幅 -->
+    <aside class="below-note" style="margin-top:60px; margin-bottom:0;">
+      <span class="note-icon" aria-hidden="true">✧</span>
+      <div>
+        <h2>想要系統化學習元素戰鬥與配隊？</h2>
+        <p>前往全新互動教學簡報，包含七大元素公式、增幅劇變乘算比較與實戰隨堂測驗！</p>
+      </div>
+      <a href={sitePath('tutorial/')} class="slide-btn">前往新手教學 ➔</a>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('gameplay-search');
+    const tabButtons = document.querySelectorAll('.cat-tab-btn');
+    const cards = Array.from(document.querySelectorAll('.gameplay-card'));
+    const visibleCount = document.getElementById('visible-count');
+    const emptyState = document.getElementById('empty-state');
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function filterCards() {
+      let count = 0;
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const text = card.getAttribute('data-search') || '';
+
+        const matchCat = currentCategory === 'all' || cat === currentCategory;
+        const matchSearch = !searchQuery || text.includes(searchQuery);
+
+        if (matchCat && matchSearch) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visibleCount) visibleCount.textContent = count.toString();
+      if (emptyState) emptyState.hidden = count > 0;
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        currentCategory = btn.getAttribute('data-cat') || 'all';
+        filterCards();
+      });
+    });
+
+    searchInput?.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      filterCards();
+    });
+
+    // 展開 / 收合卡片詳情
+    const expandButtons = document.querySelectorAll('.card-expand-btn');
+    expandButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const detailBox = document.getElementById(targetId);
+        if (!detailBox) return;
+
+        const isExpanded = detailBox.classList.contains('show');
+        if (isExpanded) {
+          detailBox.classList.remove('show');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.querySelector('span:first-child').textContent = '展開詳情';
+          btn.querySelector('span:last-child').textContent = '▾';
+        } else {
+          detailBox.classList.add('show');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.querySelector('span:first-child').textContent = '收起詳情';
+          btn.querySelector('span:last-child').textContent = '▴';
+        }
+      });
+    });
+  });
+</script>

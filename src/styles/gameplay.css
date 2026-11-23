@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Gameplay Overview Page Styles — 提瓦特玩法介紹專用樣式
+   符合 AGENTS.md 規範：深藍海軍背景、淡金點綴、高可及性與流暢響應式設計
+   ========================================================================== */
+
+.gameplay-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.gameplay-hero {
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.gameplay-eyebrow {
+  color: var(--gold);
+  font: 11px/1.2 Georgia, var(--sans);
+  letter-spacing: 0.22em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.gameplay-title {
+  font: 500 clamp(32px, 4.5vw, 52px)/1.25 var(--serif);
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.gameplay-title em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.gameplay-lede {
+  color: #b5bfc9;
+  font-size: 15.5px;
+  line-height: 1.85;
+  max-width: 760px;
+  margin: 0;
+}
+
+/* 控制與篩選區 */
+.gameplay-controls {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-and-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.gameplay-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+}
+
+.gameplay-search-box input {
+  width: 100%;
+  background: #14202e;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 8px;
+  height: 44px;
+  padding: 0 16px 0 42px;
+  font-size: 14px;
+}
+
+.gameplay-search-box input:focus {
+  border-color: var(--gold);
+  outline: none;
+}
+
+.gameplay-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cat-tab-btn {
+  background: #14202e;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.cat-tab-btn:hover {
+  color: #fff;
+  border-color: rgba(226, 198, 142, 0.4);
+}
+
+.cat-tab-btn.active {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* 玩法卡片網格 */
+.gameplay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.gameplay-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.gameplay-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(226, 198, 142, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.gameplay-card-header {
+  padding: 22px 24px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.category-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.category-tag.combat { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.category-tag.endgame { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+.category-tag.world { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+.category-tag.casual { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.category-tag.progression { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+.concept-slug {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.gameplay-card-title {
+  font: 500 22px/1.35 var(--serif);
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.gameplay-card-summary {
+  font-size: 13.5px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.gameplay-card-body {
+  padding: 16px 24px;
+  flex: 1;
+}
+
+.card-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.card-section-content {
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.card-points-list {
+  margin: 0 0 14px;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: #a0aec0;
+  line-height: 1.7;
+}
+
+.card-badges-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.char-badge-pill {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  color: #e2e8f0;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.char-badge-pill:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.gameplay-card-footer {
+  padding: 14px 24px;
+  background: rgba(17, 25, 38, 0.6);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.card-source-id {
+  font-family: monospace;
+  color: var(--gold);
+}
+
+.card-expand-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 12.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-expand-btn:hover {
+  background: var(--gold-soft);
+}
+
+/* 詳情彈出區 / 展開狀態 */
+.gameplay-card-detail {
+  display: none;
+  padding: 16px 24px 20px;
+  background: #14202f;
+  border-top: 1px dashed var(--line);
+  font-size: 13px;
+}
+
+.gameplay-card-detail.show {
+  display: block;
+}
+
+.detail-block {
+  margin-bottom: 12px;
+}
+
+.detail-block:last-child {
+  margin-bottom: 0;
+}
+
+.detail-block-title {
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 12.5px;
+  margin-bottom: 4px;
+}
+
+.detail-block-p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 響應式 */
+@media (max-width: 768px) {
+  .gameplay-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-tabs {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+}

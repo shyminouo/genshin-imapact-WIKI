@@ -59,3 +59,20 @@
 - 於 `src/components/Header.astro` 增設「新手教學」導覽入口。
 - 新增 `scripts/check-tutorial.mjs` 與 `scripts/check-tutorial.ps1` 自動化簡報測試工具，並整合至 `package.json` 之 `check:tutorial` 與 `build` 腳本。
 - 完成追加式執行紀錄 `workflow/execution-log.md` 與流程反思 `workflow/reflection.md`。
+
+
+## [2026-11-23] ingest | 擴充十則提瓦特核心遊戲玩法與系統知識庫
+- 依據使用者需求與 AGENTS.md 規範，新增 10 份遊戲玩法與系統知識頁面：
+  1. `spiral-abyss.md`（深境螺旋常駐挑戰：迴廊與淵月螺旋雙隊伍）
+  2. `imaginarium-theater.md`（幻想真境劇詩：4.7 三元素限制高難演出、耐力活力值）
+  3. `open-world-exploration.md`（大世界探索與解謎：七天神像、傳送錨點、神瞳、環境機關）
+  4. `serenitea-pot.md`（塵歌壺家園系統：仙力、寶錢、信任等級、同伴入駐好感）
+  5. `genius-invokation-tcg.md`（七聖召喚卡牌對戰：角色牌、行動牌、元素骰與反應結算）
+  6. `seasonal-events.md`（版本主題活動與千星冒險：六週旗艦大活動、智識之冕、滿精限定武器）
+  7. `resin-and-progression.md`（原粹樹脂與體力循環：200 上限、濃縮樹脂、秘境地脈消耗）
+  8. `artifacts-system.md`（聖遺物配置與套裝系統：五部位、副詞條強化跳點、2/4件套）
+  9. `fishing-system.md`（提瓦特休閒釣魚系統：波紋釣點、專用魚餌、張力提竿、「漁獲」換取）
+  10. `alchemy-and-forging.md`（鍊金合成與鍛造製造：素材三合一、還聖奧秘、鐵匠鋪鍛造四星武器）
+- 於 `raw/sources/` 建立 10 篇原始來源紀錄（S017～S026），並追加登記至 `raw/sources/registry.md`。
+- 於 `wiki/sources/` 建立 10 篇來源摘要與 40 項可核實主張（`S017-C01`～`S026-C04`）。
+- 更新 `wiki/index.md` 概念與來源索引目錄。

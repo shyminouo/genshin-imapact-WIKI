@@ -156,3 +156,104 @@
 - 遊戲版本: 1.0+
 - 授權/保存備註: 官方網站角色展頁，僅記錄公開設定與定位短註。
 - 對應 Wiki 頁面: wiki/characters/venti.md
+
+
+## [2026-11-23] official | S017: 深境螺旋常駐挑戰與深淵規則說明
+- 來源 ID: S017
+- URL: https://genshin.hoyoverse.com/en/news/detail/5548
+- 標題: Spiral Abyss Gameplay Overview and Abyssal Moon Spire Rules
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.0+
+- 授權/保存備註: 官方公開指南，記錄深境迴廊、淵月螺旋、地脈異常與原石結算機制（raw/sources/S017-spiral-abyss.md）。
+- 對應 Wiki 頁面: wiki/sources/s017-spiral-abyss.md, wiki/concepts/spiral-abyss.md
+
+## [2026-11-23] official | S018: 幻想真境劇詩常駐戰鬥玩法說明
+- 來源 ID: S018
+- URL: https://genshin.hoyoverse.com/en/news/detail/123805
+- 標題: Imaginarium Theater Gameplay Details & Rules
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 4.7+
+- 授權/保存備註: 官方公開公告，記錄元素限制、開幕角色、耐力活力機制與月更獎勵（raw/sources/S018-imaginarium-theater.md）。
+- 對應 Wiki 頁面: wiki/sources/s018-imaginarium-theater.md, wiki/concepts/imaginarium-theater.md
+
+## [2026-11-23] official | S019: 提瓦特大世界探索、神像與解謎機制指南
+- 來源 ID: S019
+- URL: https://genshin.hoyoverse.com/en/news/detail/5598
+- 標題: Teyvat Open World Exploration, Waypoints and Puzzles Guide
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.0+
+- 授權/保存備註: 官方公開指南，記錄錨點傳送、神瞳供奉、區域探索度與環境機關機制（raw/sources/S019-open-world-exploration.md）。
+- 對應 Wiki 頁面: wiki/sources/s019-open-world-exploration.md, wiki/concepts/open-world-exploration.md
+
+## [2026-11-23] official | S020: 塵歌壺家園系統與洞天擺設指南
+- 來源 ID: S020
+- URL: https://genshin.hoyoverse.com/en/news/detail/11882
+- 標題: Serenitea Pot System Gameplay Details & Housing Rules
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.5+
+- 授權/保存備註: 官方公開公告，記錄洞天仙力、信任等級、同伴入駐好感度與家具製作（raw/sources/S020-serenitea-pot.md）。
+- 對應 Wiki 頁面: wiki/sources/s020-serenitea-pot.md, wiki/concepts/serenitea-pot.md
+
+## [2026-11-23] official | S021: 七聖召喚常駐卡牌對戰說明
+- 來源 ID: S021
+- URL: https://genshin.hoyoverse.com/en/news/detail/105334
+- 標題: Genius Invokation TCG Gameplay Details: Basic Rules
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 3.3+
+- 授權/保存備註: 官方公開公告，記錄角色牌、行動牌、元素骰子、對戰流程與酒館挑戰（raw/sources/S021-genius-invokation-tcg.md）。
+- 對應 Wiki 頁面: wiki/sources/s021-genius-invokation-tcg.md, wiki/concepts/genius-invokation-tcg.md
+
+## [2026-11-23] official | S022: 提瓦特版本主題活動與千星冒險機制說明
+- 來源 ID: S022
+- URL: https://genshin.hoyoverse.com/en/news/detail/11451
+- 標題: Version Events and Limited-Time Seasonal Adventures Overview
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.0+
+- 授權/保存備註: 官方公開公告，記錄版本大型慶典、千星奇遇限時挑戰、限定武器與原石獲取（raw/sources/S022-seasonal-events.md）。
+- 對應 Wiki 頁面: wiki/sources/s022-seasonal-events.md, wiki/concepts/seasonal-events.md
+
+## [2026-11-23] official | S023: 原粹樹脂消耗、地脈衍出與秘境產出規則
+- 來源 ID: S023
+- URL: https://genshin.hoyoverse.com/en/news/detail/5586
+- 標題: Original Resin, Ley Line Outcrops and Domains System Guide
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.7+
+- 授權/保存備註: 官方公開指南，記錄原粹樹脂恢復（上限 200）、濃縮樹脂、地脈之花與討伐首領（raw/sources/S023-resin-and-progression.md）。
+- 對應 Wiki 頁面: wiki/sources/s023-resin-and-progression.md, wiki/concepts/resin-and-progression.md
+
+## [2026-11-23] official | S024: 聖遺物五部位、套裝效果與強化機制
+- 來源 ID: S024
+- URL: https://genshin.hoyoverse.com/en/news/detail/5574
+- 標題: Artifacts Equipment, Set Bonuses and Enhancement Guide
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.0+
+- 授權/保存備註: 官方公開指南，記錄花羽沙杯冠五部位、主副詞條隨機規則與 2/4 件套裝機制（raw/sources/S024-artifacts-system.md）。
+- 對應 Wiki 頁面: wiki/sources/s024-artifacts-system.md, wiki/concepts/artifacts-system.md
+
+## [2026-11-23] official | S025: 提瓦特釣魚系統玩法指南
+- 來源 ID: S025
+- URL: https://genshin.hoyoverse.com/en/news/detail/15494
+- 標題: Version 2.1 Update Preview: Fishing Gameplay Details
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 2.1+
+- 授權/保存備註: 官方公開公告，記錄釣魚波紋點、各類專用魚餌、張力提竿與釣魚協會兌換（raw/sources/S025-fishing-system.md）。
+- 對應 Wiki 頁面: wiki/sources/s025-fishing-system.md, wiki/concepts/fishing-system.md
+
+## [2026-11-23] official | S026: 鍊金合成、還聖奧秘與鍛造製造系統規則
+- 來源 ID: S026
+- URL: https://genshin.hoyoverse.com/en/news/detail/5562
+- 標題: Alchemy Crafting, Mystic Offering and Forging System Guide
+- 發布者: HoYoverse
+- 查閱日期: 2026-11-23
+- 遊戲版本: 1.0+ / 4.0+
+- 授權/保存備註: 官方公開指南，記錄素材三合一升級、聖遺物還聖奧秘三換一與鐵匠鋪鍛造四星武器（raw/sources/S026-alchemy-and-forging.md）。
+- 對應 Wiki 頁面: wiki/sources/s026-alchemy-and-forging.md, wiki/concepts/alchemy-and-forging.md
