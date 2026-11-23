@@ -1,0 +1,718 @@
+/* ==========================================================================
+   Tutorial Presentation Styles — 提瓦特觀測站新手教學簡報專用樣式
+   符合 AGENTS.md v2.0：深藍與淡金視覺系統、高可及性、響應式 16:9 與手機自動適配
+   ========================================================================== */
+
+.tutorial-page {
+  padding-top: 32px;
+  padding-bottom: 72px;
+}
+
+.tutorial-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tutorial-eyebrow {
+  color: var(--gold);
+  font: 11px/1.2 Georgia, var(--sans);
+  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.tutorial-title {
+  font: 500 clamp(24px, 3.5vw, 36px)/1.3 var(--serif);
+  margin: 0;
+  color: var(--ink);
+}
+
+.tutorial-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+/* 簡報外層框架 */
+.presentation-container {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 頂部進度條 */
+.presentation-progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  width: 100%;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #c7a765, var(--gold));
+  transition: width 0.3s ease;
+}
+
+/* 控制列 */
+.presentation-toolbar {
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: rgba(20, 31, 46, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slide-btn {
+  background: #1e2c3e;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.slide-btn:hover:not(:disabled) {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.slide-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: transparent;
+}
+
+.slide-counter {
+  font-family: Georgia, var(--sans);
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.slide-selector {
+  background: #1b283a;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  max-width: 260px;
+}
+
+/* 簡報主舞台 (Slide Viewport) */
+.slide-stage {
+  min-height: 560px;
+  padding: 36px 44px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide-card {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.slide-card.active {
+  display: flex;
+  opacity: 1;
+}
+
+.slide-card-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+
+.slide-objective-tag {
+  display: inline-block;
+  font-size: 11px;
+  background: rgba(226, 198, 142, 0.12);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(226, 198, 142, 0.25);
+  margin-bottom: 8px;
+}
+
+.slide-card-title {
+  font: 500 clamp(22px, 3vw, 28px)/1.35 var(--serif);
+  margin: 0;
+  color: #fff;
+}
+
+.slide-content-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 各模組樣式 */
+
+/* Hero */
+.slide-hero {
+  text-align: center;
+  padding: 24px 16px 12px;
+}
+.slide-hero-tag {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.slide-hero h3 {
+  font: 500 clamp(26px, 3.5vw, 36px)/1.35 var(--serif);
+  margin: 0 0 14px;
+  color: #fff;
+}
+.slide-hero p {
+  color: #b5bfc9;
+  max-width: 680px;
+  margin: auto;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.milestone-card {
+  background: #1b293a;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 16px;
+  text-align: center;
+  border-top: 2px solid var(--gold);
+}
+.milestone-step {
+  font: 18px Georgia, serif;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+.milestone-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.milestone-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Concept Box & Columns */
+.concept-card-box {
+  background: #172434;
+  border-left: 4px solid var(--gold);
+  padding: 20px 24px;
+  border-radius: 0 10px 10px 0;
+}
+.concept-card-box h4 {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font-size: 17px;
+}
+.concept-card-box p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.column-box {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+}
+.column-box h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #fff;
+}
+.column-box ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #a0aec0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Element Grid */
+.elements-flex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+.element-badge-card {
+  background: #172332;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.element-badge-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(226, 198, 142, 0.4);
+}
+.element-icon-large {
+  font-size: 32px;
+  margin-bottom: 6px;
+  display: block;
+}
+.element-title-main {
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+}
+.element-nature-pill {
+  font-size: 11px;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin: 4px 0 6px;
+}
+.element-desc-sub {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Formula & Process */
+.formula-box {
+  background: linear-gradient(135deg, #1b2b3e, #14202e);
+  border: 1px solid rgba(226, 198, 142, 0.35);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.formula-text {
+  font: 600 clamp(16px, 2.5vw, 20px)/1.4 var(--serif);
+  color: var(--gold);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.formula-desc {
+  font-size: 14px;
+  color: #c4cbd2;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: auto;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.process-item {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+.process-num {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+.process-desc {
+  font-size: 13px;
+  color: #a0aec0;
+  line-height: 1.6;
+}
+
+/* Comparison Table */
+.table-responsive {
+  overflow-x: auto;
+}
+.comparison-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.comparison-tbl th {
+  background: #1c2b3d;
+  color: var(--gold);
+  padding: 12px 14px;
+  text-align: left;
+  border: 1px solid var(--line);
+  font-weight: 600;
+}
+.comparison-tbl td {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+.comparison-tbl tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+.tbl-dim {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Weapon Cards */
+.weapon-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.weapon-card {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 12px;
+  text-align: center;
+}
+.weapon-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.weapon-code {
+  font-size: 11px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 8px;
+}
+.weapon-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Roles */
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.role-box {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.role-badge {
+  font-size: 11px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.role-action {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.role-points {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #a0aec0;
+  line-height: 1.7;
+}
+
+/* Character Showcase Grid */
+.char-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.char-showcase-card {
+  background: #172332;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+.char-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.char-card-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  font-family: var(--serif);
+}
+.char-card-meta {
+  font-size: 11px;
+  color: var(--gold);
+}
+.char-card-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7dd3fc;
+  margin-bottom: 6px;
+}
+.char-card-mech {
+  font-size: 12px;
+  color: #a0aec0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Team Building Slots */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.slot-box {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  border-top: 2px solid var(--gold);
+}
+.slot-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.slot-role {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.slot-duty {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Misconceptions */
+.misconception-card {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+.mis-wrong {
+  color: #f87171;
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mis-correct {
+  color: #cbd5e1;
+  font-size: 13.5px;
+  line-height: 1.7;
+  padding-left: 26px;
+}
+
+/* Interactive Quiz */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.quiz-item {
+  background: #172434;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+.quiz-question {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.quiz-opt-btn {
+  background: #1e2c3e;
+  border: 1px solid var(--line);
+  color: #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.quiz-opt-btn:hover:not(:disabled) {
+  background: #27374d;
+  border-color: var(--gold);
+}
+.quiz-opt-btn.correct {
+  background: rgba(52, 211, 153, 0.2);
+  border-color: #34d399;
+  color: #34d399;
+}
+.quiz-opt-btn.wrong {
+  background: rgba(248, 113, 113, 0.2);
+  border-color: #f87171;
+  color: #f87171;
+}
+.quiz-feedback {
+  display: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+.quiz-feedback.show {
+  display: block;
+}
+.quiz-feedback.success {
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #d1fae5;
+}
+.quiz-feedback.error {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #fee2e2;
+}
+
+/* Citations Footer */
+.slide-citations-footer {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.citations-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.citation-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 8px;
+  color: var(--gold);
+  font-family: monospace;
+}
+
+/* 響應式適配 */
+@media (max-width: 980px) {
+  .slide-stage {
+    padding: 24px 20px;
+    min-height: 520px;
+  }
+  .milestones-grid,
+  .weapon-grid,
+  .roles-grid,
+  .char-showcase-grid,
+  .slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .presentation-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-controls {
+    justify-content: space-between;
+  }
+  .slide-selector {
+    max-width: 100%;
+  }
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+  .milestones-grid,
+  .weapon-grid,
+  .roles-grid,
+  .char-showcase-grid,
+  .slots-grid {
+    grid-template-columns: 1fr;
+  }
+}

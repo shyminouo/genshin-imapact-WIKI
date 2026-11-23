@@ -39,6 +39,7 @@
 - [工作流程圖與驗收條件 (Graph V1)](../workflow/graph-v1.md)
 - [執行紀錄 (Execution Log)](../workflow/execution-log.md)
 - [流程反思 (Reflection)](../workflow/reflection.md)
+- [新手簡報執行成果 (Run: 2026-11-23-01)](../workflow/runs/2026-11-23-01/checks.md)
 
 ## 維護與模板
 

@@ -50,3 +50,12 @@
 - 追加官方來源登記至 `raw/sources/registry.md`（S011～S016）並新增 Raw 擷取紀錄檔案。
 - 更新 `wiki/index.md` 索引目錄，涵蓋新角色與蒙德地區。
 - 透過離線驗證工具檢查 YAML frontmatter、必要欄位、slug、元素、武器、日期、來源 URL 及雙向關聯完整性，全數通過。
+
+
+## [2026-11-23] workflow | 完成新手教學簡報完整生成流程（Run: 2026-11-23-01）
+- 依據 AGENTS.md 第 12～14 節規範，順序執行 Retriever ➔ Planner ➔ Writer ➔ Reviewer ➔ HTML Generator ➔ Tester 完整節點。
+- 產出 `workflow/runs/2026-11-23-01/` 全套中間產物：`evidence.md`（檢索 20 項主張與 6 位角色）、`outline.md`（12 頁簡報大綱）、`slide-content.json`（結構化簡報資料與 3 道隨堂測驗）、`review.md`（審查事實、難度與引用）、`checks.md`（功能與建置測試結果）。
+- 實作 `src/pages/tutorial/index.astro` 與 `src/styles/tutorial.css`，採用 Astro 靜態頁面、深藍淡金視覺系統，支援翻頁、進度、快速跳頁、鍵盤控制與即時小測驗回饋。
+- 於 `src/components/Header.astro` 增設「新手教學」導覽入口。
+- 新增 `scripts/check-tutorial.mjs` 與 `scripts/check-tutorial.ps1` 自動化簡報測試工具，並整合至 `package.json` 之 `check:tutorial` 與 `build` 腳本。
+- 完成追加式執行紀錄 `workflow/execution-log.md` 與流程反思 `workflow/reflection.md`。

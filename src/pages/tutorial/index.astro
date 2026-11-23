@@ -1,0 +1,551 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sitePath } from '../../lib/site';
+import slideData from '../../../workflow/runs/2026-11-23-01/slide-content.json';
+import '../../styles/tutorial.css';
+
+const { theme, slides } = slideData;
+const totalSlides = slides.length;
+---
+
+<BaseLayout title="新手教學：元素與戰鬥系統" description="原神初學者必修課：系統化拆解七大元素、五大武器、元素反應乘算與四人配隊模型。">
+  <div class="shell tutorial-page">
+    <!-- 頂部頁頭 -->
+    <header class="tutorial-header">
+      <div>
+        <div class="tutorial-eyebrow">
+          <span>TEYVAT COMBAT ACADEMY</span>
+          <span style="opacity:0.4;">/</span>
+          <span>RUN: 2026-11-23-01</span>
+        </div>
+        <h1 class="tutorial-title">{theme}</h1>
+        <p class="tutorial-subtitle">以單一事實來源（Single Source of Truth）與可查證主張為基石的系統化教學簡報</p>
+      </div>
+      <div>
+        <a href={sitePath()} class="slide-btn" style="text-decoration:none;">
+          <span aria-hidden="true">↖</span> 返回角色圖鑑
+        </a>
+      </div>
+    </header>
+
+    <!-- 簡報互動容器 -->
+    <section class="presentation-container" aria-label="教學簡報主舞台" id="presentation-app">
+      <!-- 頂部進度條 -->
+      <div class="presentation-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax={totalSlides} id="progress-bar">
+        <div class="progress-fill" id="progress-fill" style={`width: ${(1 / totalSlides) * 100}%`}></div>
+      </div>
+
+      <!-- 控制工具列 -->
+      <nav class="presentation-toolbar" aria-label="簡報頁面導覽">
+        <div class="nav-controls">
+          <button type="button" class="slide-btn" id="prev-btn" aria-label="切換至上一頁" disabled>
+            <span aria-hidden="true">‹</span> 上一頁
+          </button>
+          <span class="slide-counter" id="slide-indicator" aria-live="polite">
+            第 <strong id="current-slide-num">1</strong> / {totalSlides} 頁
+          </span>
+          <button type="button" class="slide-btn" id="next-btn" aria-label="切換至下一頁">
+            下一頁 <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <div>
+          <label for="slide-dropdown" class="visually-hidden">快速跳頁</label>
+          <select id="slide-dropdown" class="slide-selector" aria-label="快速跳頁目錄">
+            {slides.map((s, idx) => (
+              <option value={idx}>
+                {idx + 1}. {s.title}
+              </option>
+            ))}
+          </select>
+        </div>
+      </nav>
+
+      <!-- 投影片主內容區 -->
+      <div class="slide-stage" id="slide-stage">
+        {slides.map((slide, index) => (
+          <article
+            class={`slide-card ${index === 0 ? 'active' : ''}`}
+            id={slide.id}
+            data-slide-index={index}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} of ${totalSlides}: ${slide.title}`}
+          >
+            <!-- 投影片頭部 -->
+            <header class="slide-card-header">
+              <span class="slide-objective-tag">🎯 學習目標：{slide.objective}</span>
+              <h2 class="slide-card-title">{slide.title}</h2>
+            </header>
+
+            <!-- 投影片本體 (依 Block 類型渲染) -->
+            <div class="slide-content-body">
+              {slide.blocks.map((block) => {
+                if (block.type === 'hero') {
+                  return (
+                    <div class="slide-hero">
+                      <div class="slide-hero-tag">{block.tagline}</div>
+                      <h3>{block.subtitle}</h3>
+                      <p>{block.description}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'milestones') {
+                  return (
+                    <div class="milestones-grid">
+                      {block.items.map((item) => (
+                        <div class="milestone-card">
+                          <span class="milestone-step">STAGE {item.step}</span>
+                          <div class="milestone-title">{item.name}</div>
+                          <div class="milestone-desc">{item.desc}</div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'concept-box') {
+                  return (
+                    <div class="concept-card-box">
+                      <h4>{block.title}</h4>
+                      <p>{block.content}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'columns') {
+                  return (
+                    <div class="two-columns">
+                      <div class="column-box">
+                        <h4 style="color:#f87171;">✧ {block.left.title}</h4>
+                        <ul>
+                          {block.left.points.map((pt) => <li>{pt}</li>)}
+                        </ul>
+                      </div>
+                      <div class="column-box">
+                        <h4 style="color:#60a5fa;">✧ {block.right.title}</h4>
+                        <ul>
+                          {block.right.points.map((pt) => <li>{pt}</li>)}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'element-grid') {
+                  return (
+                    <div class="elements-flex">
+                      {block.elements.map((el) => (
+                        <div class="element-badge-card" style={`border-top: 3px solid ${el.color};`}>
+                          <span class="element-icon-large" style={`color: ${el.color};`}>{el.symbol}</span>
+                          <span class="element-title-main" style={`color: ${el.color};`}>{el.name}</span>
+                          <span class="element-nature-pill" style={`background: rgba(255,255,255,0.06); color: ${el.color};`}>
+                            {el.nature}
+                          </span>
+                          <p class="element-desc-sub">{el.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'tip-box') {
+                  return (
+                    <div class="concept-card-box" style="border-left-color: #34d399; background: #13272d;">
+                      <h4 style="color:#34d399;">💡 核心機制備忘</h4>
+                      <p>{block.text}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'formula-card') {
+                  return (
+                    <div class="formula-box">
+                      <div class="formula-text">{block.formula}</div>
+                      <p class="formula-desc">{block.explanation}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'process-steps') {
+                  return (
+                    <div>
+                      <h4 style="color:var(--gold); margin:0 0 12px; font-size:15px;">{block.title}</h4>
+                      <div class="process-grid">
+                        {block.steps.map((st) => (
+                          <div class="process-item">
+                            <span class="process-num">{st.title}</span>
+                            <div class="process-desc">{st.detail}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'comparison-table') {
+                  return (
+                    <div class="table-responsive">
+                      <table class="comparison-tbl">
+                        <thead>
+                          <tr>
+                            {block.headers.map((h) => <th>{h}</th>)}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {block.rows.map((row) => (
+                            <tr>
+                              <td class="tbl-dim">{row[0]}</td>
+                              <td style="color:#fde047;">{row[1]}</td>
+                              <td style="color:#93c5fd;">{row[2]}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'highlight-box') {
+                  return (
+                    <div class="concept-card-box" style="border-left-color: #a855f7; background: #1f1d32;">
+                      <h4 style="color:#c084fc;">⚡ {block.title}</h4>
+                      <p>{block.text}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'weapon-types') {
+                  return (
+                    <div class="weapon-grid">
+                      {block.types.map((w) => (
+                        <div class="weapon-card">
+                          <div class="weapon-name">{w.name}</div>
+                          <span class="weapon-code">{w.code}</span>
+                          <p class="weapon-desc">{w.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'key-rule-card') {
+                  return (
+                    <div class="concept-card-box" style="border-left-color: #f59e0b; background: #262118;">
+                      <h4 style="color:var(--gold);">⚠️ {block.title}</h4>
+                      <p style="color:#fde68a;">{block.rule}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'role-cards') {
+                  return (
+                    <div class="roles-grid">
+                      {block.roles.map((r) => (
+                        <div class="role-box">
+                          <div>
+                            <div class="role-header">
+                              <strong style="font-size:16px; color:#fff;">{r.tag}</strong>
+                              <span class="role-badge">{r.badge}</span>
+                            </div>
+                            <div class="role-action">{r.action}</div>
+                            <ul class="role-points">
+                              {r.characteristics.map((c) => <li>{c}</li>)}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'character-showcase') {
+                  return (
+                    <div class="char-showcase-grid">
+                      {block.examples.map((ch) => (
+                        <div class="char-showcase-card">
+                          <div class="char-card-top">
+                            <span class="char-card-name">
+                              <a href={sitePath(`characters/${ch.slug}/`)} target="_blank" style="text-decoration:underline;">
+                                {ch.name} ↗
+                              </a>
+                            </span>
+                            <span class="char-card-meta">{ch.region} · {ch.element}元素</span>
+                          </div>
+                          <div class="char-card-role">{ch.role}</div>
+                          <p class="char-card-mech">{ch.mechanism}</p>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'team-framework') {
+                  return (
+                    <div>
+                      <h4 style="color:var(--gold); margin:0 0 10px; font-size:15px;">{block.title}</h4>
+                      <div class="slots-grid">
+                        {block.slots.map((sl) => (
+                          <div class="slot-box">
+                            <div class="slot-title">{sl.slot}</div>
+                            <div class="slot-role">{sl.role}</div>
+                            <div class="slot-duty">{sl.duty}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'resonance-grid') {
+                  return (
+                    <div>
+                      <h4 style="color:var(--gold); margin:12px 0 10px; font-size:15px;">{block.title}</h4>
+                      <div class="milestones-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        {block.resonances.map((res) => (
+                          <div class="milestone-card" style="border-top-color:#60a5fa; text-align:left;">
+                            <strong style="color:#fff; font-size:14px; display:block; margin-bottom:4px;">{res.pair}</strong>
+                            <div style="color:var(--gold); font-size:13px; font-weight:600; margin-bottom:6px;">{res.effect}</div>
+                            <div style="color:var(--muted); font-size:11.5px; line-height:1.5;">{res.note}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'rotation-rule') {
+                  return (
+                    <div class="concept-card-box" style="border-left-color: #38bdf8; background: #132433;">
+                      <h4 style="color:#38bdf8;">🔄 {block.title}</h4>
+                      <p>{block.rule}</p>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'misconceptions') {
+                  return (
+                    <div>
+                      {block.items.map((m) => (
+                        <div class="misconception-card">
+                          <div class="mis-wrong">
+                            <span aria-hidden="true">✕</span>
+                            <span>{m.wrong}</span>
+                          </div>
+                          <div class="mis-correct">
+                            <span style="color:#34d399; font-weight:600;">✓ </span>
+                            {m.correct}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'interactive-quiz') {
+                  return (
+                    <div class="quiz-container">
+                      {block.questions.map((q, qIndex) => (
+                        <div class="quiz-item" data-question-id={q.id} data-correct-idx={q.answerIndex}>
+                          <div class="quiz-question">{q.question}</div>
+                          <div class="quiz-options">
+                            {q.options.map((opt, optIndex) => (
+                              <button
+                                type="button"
+                                class="quiz-opt-btn"
+                                data-opt-idx={optIndex}
+                                aria-label={`選擇 ${opt}`}
+                              >
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
+                          <div class="quiz-feedback" id={`feedback-${q.id}`} aria-live="polite">
+                            <div class="feedback-status" style="font-weight:700; margin-bottom:4px;"></div>
+                            <div class="feedback-explanation">{q.explanation}</div>
+                            <div style="font-size:11px; margin-top:6px; opacity:0.8;">
+                              依據：{q.citation.wikiPath} ({q.citation.sourceId}: {q.citation.claimId})
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (block.type === 'summary-mantra') {
+                  return (
+                    <div class="concept-card-box" style="border-left-color: var(--gold); background: #1e2a3a;">
+                      <h4 style="color:var(--gold);">📜 提瓦特四句訣</h4>
+                      <ul style="margin:6px 0 0; padding-left:18px; line-height:2; color:#fff;">
+                        {block.mantra.map((m) => <li>{m}</li>)}
+                      </ul>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'wiki-navigation') {
+                  return (
+                    <div>
+                      <h4 style="color:var(--gold); margin:0 0 10px; font-size:15px;">{block.title}</h4>
+                      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        {block.links.map((lk) => (
+                          <span class="slide-btn" style="cursor:default;">
+                            📖 {lk.text} <small style="opacity:0.6; margin-left:4px;">({lk.path})</small>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (block.type === 'sources-table') {
+                  return (
+                    <div style="margin-top:10px;">
+                      <h4 style="color:var(--gold); margin:0 0 10px; font-size:15px;">{block.title}</h4>
+                      <div class="table-responsive">
+                        <table class="comparison-tbl" style="font-size:12px;">
+                          <thead>
+                            <tr>
+                              <th style="width:100px;">來源 ID</th>
+                              <th>標題與內容</th>
+                              <th style="width:120px;">檢驗狀態</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {block.sources.map((s) => (
+                              <tr>
+                                <td style="font-family:monospace; color:var(--gold);">{s.id}</td>
+                                <td>
+                                  <a href={s.url} target="_blank" rel="noopener noreferrer" style="color:#93c5fd; text-decoration:underline;">
+                                    {s.title} ↗
+                                  </a>
+                                </td>
+                                <td style="color:#34d399;">✓ 已逐項查核</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return null;
+              })}
+            </div>
+
+            <!-- 投影片底部 Citations -->
+            {slide.citations && slide.citations.length > 0 && (
+              <footer class="slide-citations-footer">
+                <span>✦ 本頁知識來源依據：</span>
+                <div class="citations-list">
+                  {slide.citations.map((c) => (
+                    <span class="citation-pill" title={`來源: ${c.sourceId} | Wiki: ${c.wikiPath}`}>
+                      {c.sourceId} : {c.claimId}
+                    </span>
+                  ))}
+                </div>
+              </footer>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = Array.from(document.querySelectorAll('.slide-card'));
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const slideDropdown = document.getElementById('slide-dropdown');
+    const currentSlideNum = document.getElementById('current-slide-num');
+    const progressFill = document.getElementById('progress-fill');
+    const progressBar = document.getElementById('progress-bar');
+
+    function showSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentIndex = index;
+
+      slides.forEach((slide, i) => {
+        if (i === currentIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // 更新控制器狀態
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === totalSlides - 1;
+      slideDropdown.value = currentIndex.toString();
+      currentSlideNum.textContent = (currentIndex + 1).toString();
+
+      // 更新進度條
+      const pct = ((currentIndex + 1) / totalSlides) * 100;
+      progressFill.style.width = `${pct}%`;
+      progressBar.setAttribute('aria-valuenow', (currentIndex + 1).toString());
+    }
+
+    prevBtn?.addEventListener('click', () => showSlide(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => showSlide(currentIndex + 1));
+    slideDropdown?.addEventListener('change', (e) => {
+      showSlide(parseInt(e.target.value, 10));
+    });
+
+    // 鍵盤方向鍵支援（避開表單輸入項）
+    window.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (['input', 'select', 'textarea'].includes(activeTag)) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        if (currentIndex < totalSlides - 1) {
+          e.preventDefault();
+          showSlide(currentIndex + 1);
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentIndex > 0) {
+          e.preventDefault();
+          showSlide(currentIndex - 1);
+        }
+      }
+    });
+
+    // 小測驗互動邏輯
+    const quizItems = document.querySelectorAll('.quiz-item');
+    quizItems.forEach((item) => {
+      const correctIdx = parseInt(item.getAttribute('data-correct-idx') || '0', 10);
+      const buttons = item.querySelectorAll('.quiz-opt-btn');
+      const feedback = item.querySelector('.quiz-feedback');
+      const statusText = item.querySelector('.feedback-status');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const selectedIdx = parseInt(btn.getAttribute('data-opt-idx') || '0', 10);
+          
+          // 重置按鈕狀態
+          buttons.forEach((b) => b.classList.remove('correct', 'wrong'));
+          feedback.classList.remove('success', 'error', 'show');
+
+          if (selectedIdx === correctIdx) {
+            btn.classList.add('correct');
+            feedback.classList.add('success', 'show');
+            statusText.textContent = '🎉 回答完全正確！';
+          } else {
+            btn.classList.add('wrong');
+            // 也標出正確答案
+            buttons[correctIdx]?.classList.add('correct');
+            feedback.classList.add('error', 'show');
+            statusText.textContent = '❌ 回答錯誤，請參考以下正確解析：';
+          }
+        });
+      });
+    });
+  });
+</script>

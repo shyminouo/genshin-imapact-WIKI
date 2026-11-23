@@ -1,0 +1,456 @@
+{
+  "runId": "2026-11-23-01",
+  "createdAt": "2026-11-23",
+  "theme": "原神新手入門：從元素認識角色與戰鬥系統",
+  "slides": [
+    {
+      "id": "slide-01-cover",
+      "title": "原神新手入門：從元素認識角色與戰鬥系統",
+      "objective": "建立學習地圖，掌握四大核心學習目標與課程全貌",
+      "blocks": [
+        {
+          "type": "hero",
+          "tagline": "提瓦特冒險家第一課",
+          "subtitle": "不靠玄學配隊，用底層規則看懂原神的元素交響曲",
+          "description": "本課程專為剛進入提瓦特大陸的新人旅行者設計。透過系統化拆解七大元素、武器特性、反應運算與角色定位，幫助你建立直觀而清晰的戰鬥思維。"
+        },
+        {
+          "type": "milestones",
+          "items": [
+            { "step": "01", "name": "七大元素與武器", "desc": "認識提瓦特的基本自然力與裝備機制" },
+            { "step": "02", "name": "元素反應原理", "desc": "釐清增幅與劇變反應的乘算與傷害特性" },
+            { "step": "03", "name": "角色三大戰鬥職責", "desc": "依站場時間與脫手能力辨析主C、副C與輔助" },
+            { "step": "04", "name": "四人配隊黃金模型", "desc": "掌握元素共鳴加成與實戰切人循環原則" }
+          ]
+        }
+      ],
+      "citations": []
+    },
+    {
+      "id": "slide-02-concept-aura",
+      "title": "戰鬥的核心：神之眼、元素與「附著」",
+      "objective": "建立提瓦特戰鬥的基本世界觀，區分物理與元素傷害，理解元素附著機制",
+      "blocks": [
+        {
+          "type": "concept-box",
+          "title": "什麼是元素附著（Elemental Aura）？",
+          "content": "在提瓦特大陸上，神之眼持有者能引導七種固有自然元素。當角色施放元素戰技（E）、元素爆發（Q）或特定附魔普攻命中敵人時，會在目標身上施加一層「元素附著印記」。這就像給敵人染上特定的色彩，是後續所有元素反應的基石。"
+        },
+        {
+          "type": "columns",
+          "left": {
+            "title": "純物理傷害（White DMG）",
+            "points": [
+              "普通近戰與弓箭平A預設為物理傷害",
+              "傷害數字呈現白色字樣",
+              "不會在敵人身上留下元素印記，無法觸發反應"
+            ]
+          },
+          "right": {
+            "title": "元素傷害（Colored DMG）",
+            "points": [
+              "技能、法器普攻或附魔攻擊產生",
+              "數字呈現對應元素色彩（火紅、水藍、雷紫等）",
+              "施加「元素附著（Aura）」，為後續反應鋪路"
+            ]
+          }
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C01" },
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C02" }
+      ]
+    },
+    {
+      "id": "slide-03-seven-elements",
+      "title": "提瓦特自然律動：七種元素的力量",
+      "objective": "完整認識提瓦特七大固有元素及其屬性象徵與戰鬥特色",
+      "blocks": [
+        {
+          "type": "element-grid",
+          "elements": [
+            { "name": "火 (Pyro)", "symbol": "✺", "nature": "熱烈與燃燒", "color": "#f87171", "desc": "具備強大爆發性，擅長引發蒸發與融化乘法傷害" },
+            { "name": "水 (Hydro)", "symbol": "≋", "nature": "包容與滋養", "color": "#60a5fa", "desc": "絕佳的反應介質，與火引發蒸發、與冰凍結、與雷感電" },
+            { "name": "風 (Anemo)", "symbol": "✧", "nature": "自由與擴散", "color": "#34d399", "desc": "後手觸發元素，能擴散四元素並聚攏敵人" },
+            { "name": "雷 (Electro)", "symbol": "ϟ", "nature": "迅捷與永恆", "color": "#c084fc", "desc": "劇變反應的核心，提供超載衝擊、感電跳躍與超導減抗" },
+            { "name": "草 (Dendro)", "symbol": "❀", "nature": "生機與智慧", "color": "#a3e635", "desc": "與水、雷、火交織出多段連鎖化學反應" },
+            { "name": "冰 (Cryo)", "symbol": "❄", "nature": "凜冽與凝結", "color": "#7dd3fc", "desc": "強力的控制與暴擊輔助，可凍結敵人或打出高額融化" },
+            { "name": "岩 (Geo)", "symbol": "◇", "nature": "堅固與沉著", "color": "#facc15", "desc": "後手結晶元素，能與四元素掉落護盾晶片提供保護" }
+          ]
+        },
+        {
+          "type": "tip-box",
+          "text": "重要規則：風元素與岩元素主要作為「後手反應觸發元素（Trigger）」，在常態戰鬥下無法在自身無屬性的敵人身上留存為先手附著印記。"
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C01" },
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C04" }
+      ]
+    },
+    {
+      "id": "slide-04-reaction-mechanics",
+      "title": "元素相遇的奇蹟：反應觸發與附著消耗",
+      "objective": "理解元素相遇時的連鎖反應原理、先後手順序與附著量消耗",
+      "blocks": [
+        {
+          "type": "formula-card",
+          "formula": "先手元素附著 (Aura) + 後手元素攻擊 (Trigger) ➔ 元素反應生效 (Reaction)",
+          "explanation": "當目標身上已經帶有某種元素附著時，受到能與之反應的另一種元素攻擊，系統即刻判定觸發元素反應。反應發生後，先手元素的附著量會被消耗扣減；當附著量歸零時，敵人恢復無元素狀態。"
+        },
+        {
+          "type": "process-steps",
+          "title": "戰鬥觸發三步驟流程",
+          "steps": [
+            { "title": "步驟 1：先手掛元素", "detail": "使用技能為敵人施加基礎元素（例如水元素附著）" },
+            { "title": "步驟 2：後手促反應", "detail": "切換角色或釋放另一種元素技能攻擊（例如火元素斬擊）" },
+            { "title": "步驟 3：結算與消耗", "detail": "瞬間觸發反應效果（蒸發增幅），並依消耗係數扣除先手元素計量" }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C02" },
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C03" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C01" }
+      ]
+    },
+    {
+      "id": "slide-05-amplifying-vs-transformative",
+      "title": "傷害質變的關鍵：增幅反應 vs 劇變反應",
+      "objective": "清晰辨析增幅反應（乘算、暴擊）與劇變反應（等級精通、獨立傷害）兩大陣營",
+      "blocks": [
+        {
+          "type": "comparison-table",
+          "headers": ["特性維度", "增幅反應（Amplifying）", "劇變反應（Transformative）"],
+          "rows": [
+            ["代表反應", "蒸發（水+火）、融化（冰+火）", "感電（水+雷）、超載（火+雷）、超導（冰+雷）、擴散（風+四元素）"],
+            ["傷害計算公式", "直接以觸發擊原本傷害 × 反應倍率 × 元素精通加成", "依據觸發角色等級係數 × 元素精通加成之獨立數值"],
+            ["能否造成暴擊", "可以暴擊（取決於觸發角色的暴擊率與暴擊傷害）", "無法暴擊（傷害數字固定，無視雙暴）"],
+            ["敵方抗性與防禦", "受敵人物理防禦與對應元素抗性減免", "無視敵人物理防禦，僅受對應屬性抗性影響"],
+            ["先後手倍率影響", "火打水蒸發 1.5x / 水打火蒸發 2.0x；冰打火融化 1.5x / 火打冰融化 2.0x", "先後手不改變基礎計算公式，均以觸發者屬性判定"]
+          ]
+        },
+        {
+          "type": "highlight-box",
+          "title": "劇變反應的戰術功能",
+          "text": "超導反應會降低目標 40% 物理抗性達 12 秒；感電能使水雷共存並間歇跳躍打斷敵方硬直；超載能造成範圍爆炸並擊飛輕型敵人；擴散可將元素範圍潑灑至周遭敵人。"
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C01" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C02" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C03" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C04" }
+      ]
+    },
+    {
+      "id": "slide-06-weapons-system",
+      "title": "冒險家的武裝：五大武器類型與普攻規則",
+      "objective": "認識五大武器分類與面板白值結構，破除「所有普攻自帶元素」之迷思",
+      "blocks": [
+        {
+          "type": "weapon-types",
+          "types": [
+            { "name": "單手劍", "code": "Sword", "desc": "攻速均衡、動作靈活，代表角色如芙寧娜、琴" },
+            { "name": "雙手劍", "code": "Claymore", "desc": "攻速沉重、削韌壓制力強，代表角色如迪盧克" },
+            { "name": "長柄武器", "code": "Polearm", "desc": "高頻連刺、位移靈活，代表角色如雷電將軍" },
+            { "name": "法器", "code": "Catalyst", "desc": "天然元素媒介，全部普攻與重擊自帶純元素傷害，如那維萊特" },
+            { "name": "弓", "code": "Bow", "desc": "遠程狙擊、蓄力射擊帶元素箭矢，代表角色如溫迪" }
+          ]
+        },
+        {
+          "type": "key-rule-card",
+          "title": "重要普攻屬性分水嶺",
+          "rule": "法器角色是唯一所有普攻與重擊均為「純元素傷害」的武器種類！單手劍、雙手劍、長柄武器與弓箭手在未開啟特殊技能或附魔狀態下，一般普攻全為純物理白字傷害。"
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C01" },
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C02" },
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C03" }
+      ]
+    },
+    {
+      "id": "slide-07-character-roles",
+      "title": "隊伍協同之基：主輸出、副輸出與輔助",
+      "objective": "依據前台站場時間與脫手能力，掌握三大核心戰鬥定位的劃分原則",
+      "blocks": [
+        {
+          "type": "role-cards",
+          "roles": [
+            {
+              "tag": "主輸出 (Main DPS)",
+              "badge": "站場核心",
+              "action": "前台站場輸出 ➔ 打出全隊主要面板傷害",
+              "characteristics": [
+                "佔據隊伍大部分前台操作時間",
+                "依賴平A、蓄力重擊或爆發狀態連續輸出",
+                "切入後台通常會打斷其輸出循環或結束技能強化狀態"
+              ]
+            },
+            {
+              "tag": "副輸出 (Sub DPS)",
+              "badge": "後台脫手",
+              "action": "施放技能 ➔ 即刻切入後台持續輸出與掛元素",
+              "characteristics": [
+                "核心標籤為「脫手（Off-field）」能力",
+                "技能釋放後留在場上自主攻擊或隨前台角色協同作戰",
+                "持續為敵人附加元素，輔助前台主C穩定觸發元素反應"
+              ]
+            },
+            {
+              "tag": "輔助 (Support)",
+              "badge": "增益與生存",
+              "action": "團隊增益 ➔ 削弱敵抗、充能補給與生命護盾保障",
+              "characteristics": [
+                "增傷輔助（Buffer）：提供攻擊力、元素傷害或精通加成",
+                "充能輔助（Battery）：製造大量微粒解決全隊開大充能痛點",
+                "生存保障（Healer / Shielder）：提供治療回復或阻擋打斷護盾"
+              ]
+            }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C01" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C02" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C03" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C04" }
+      ]
+    },
+    {
+      "id": "slide-08-wiki-character-examples",
+      "title": "走進提瓦特：Wiki 收錄角色之實戰職能展示",
+      "objective": "將抽象的角色職責架構與本站圖鑑實際收錄之 6 名角色建立映射",
+      "blocks": [
+        {
+          "type": "character-showcase",
+          "examples": [
+            {
+              "name": "那維萊特",
+              "slug": "neuvillette",
+              "region": "楓丹",
+              "element": "水",
+              "role": "站場主輸出 (Main DPS)",
+              "mechanism": "身為法器角色，站場蓄力吸收源水滴噴射高額水元素激流，承擔全隊最核心輸出。"
+            },
+            {
+              "name": "芙寧娜",
+              "slug": "furina",
+              "region": "楓丹",
+              "element": "水",
+              "role": "副輸出 / 全隊增傷 (Sub DPS / Buffer)",
+              "mechanism": "召喚「沙龍成員」後即可切至後台，召喚物自動追擊並持續附著水元素，開大提供全隊氣氛值增傷。"
+            },
+            {
+              "name": "迪盧克",
+              "slug": "diluc",
+              "region": "蒙德",
+              "element": "火",
+              "role": "站場主輸出 (Main DPS)",
+              "mechanism": "火元素雙手劍，施放黎明召喚火鳥獲得火附魔，配合元素戰技三段斬擊進行平穩站場壓制。"
+            },
+            {
+              "name": "琴",
+              "slug": "jean",
+              "region": "蒙德",
+              "element": "風",
+              "role": "生存輔助 / 擴散 (Support / Healer)",
+              "mechanism": "蒲公英之風元素爆發能瞬間大幅抬升全隊生命值，並在蒲公英領域內持續擴散並驅散角色自身負面附著。"
+            },
+            {
+              "name": "溫迪",
+              "slug": "venti",
+              "region": "蒙德",
+              "element": "風",
+              "role": "控場輔助 (Support / Crowd Control)",
+              "mechanism": "風神之詩製造巨大暴風眼，對中小體型敵人提供超長時長強效吸附與高頻擴散反應。"
+            },
+            {
+              "name": "雷電將軍",
+              "slug": "raiden-shogun",
+              "region": "稻妻",
+              "element": "雷",
+              "role": "爆發充能 / 協同 (Sub DPS / Battery)",
+              "mechanism": "戰技提供後台雷協同與全隊大招增傷，自身開大站場 7 秒打出高爆發同時為全隊恢復元素能量。"
+            }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C02" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C03" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C04" }
+      ]
+    },
+    {
+      "id": "slide-09-team-building-and-resonance",
+      "title": "1+1>2 的策略：四人編隊原則與元素共鳴",
+      "objective": "掌握四人隊伍黃金搭配框架、兩兩元素共鳴機制與實戰技能釋放循環",
+      "blocks": [
+        {
+          "type": "team-framework",
+          "title": "經典四人編隊黃金架構",
+          "slots": [
+            { "slot": "1 號位", "role": "站場主輸出 (Main DPS)", "duty": "享有全隊資源，打滿爆發站場時間" },
+            { "slot": "2 號位", "role": "後台副輸出 (Sub DPS)", "duty": "脫手技能持續掛元素，配合主C打反應" },
+            { "slot": "3 號位", "role": "功能輔助 (Buffer / CC)", "duty": "減抗、聚怪、增傷、提供元素微粒" },
+            { "slot": "4 號位", "role": "生存位 (Healer / Shielder)", "duty": "套盾、回復生命值，確保隊伍容錯率" }
+          ]
+        },
+        {
+          "type": "resonance-grid",
+          "title": "常用雙元素共鳴加成",
+          "resonances": [
+            { "pair": "雙水（癒水之交）", "effect": "全隊生命值上限提升 25%", "note": "大幅利好那維萊特、芙寧娜等依賴生命值倍率之角色" },
+            { "pair": "雙火（熱誠之火）", "effect": "全隊基礎攻擊力提升 25%", "note": "全面增幅全隊攻擊力倍率角色的輸出面板" },
+            { "pair": "雙雷（強能之雷）", "effect": "觸發感電/超導/超載時必定掉落雷微粒", "note": "顯著緩解全隊元素爆發的充能回轉壓力" }
+          ]
+        },
+        {
+          "type": "rotation-rule",
+          "title": "戰鬥切人循環金科玉律",
+          "rule": "「生存位套盾/回血 ➔ 輔助施加增益減抗 ➔ 副輸出開脫手大招 ➔ 主輸出進場打滿輸出軸」，確保主C享有最齊全的 Buff 覆蓋！"
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C01" },
+        { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C02" },
+        { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C04" }
+      ]
+    },
+    {
+      "id": "slide-10-common-misconceptions",
+      "title": "冒險家避坑指南：戰鬥系統新手常見三大迷思",
+      "objective": "破除初學者在配隊、反應與攻擊屬性上的三大常見認知誤區",
+      "blocks": [
+        {
+          "type": "misconceptions",
+          "items": [
+            {
+              "wrong": "迷思 1：四個強力五星主輸出組在一隊，傷害一定最高？",
+              "correct": "正解：錯誤！前台在同一秒內只有一名角色能進行操作。四個主C只會互相搶奪站場時間，且無人提供脫手掛元素、減抗增傷或生存保護，隊伍實戰傷害遠不如合理分工的隊伍。"
+            },
+            {
+              "wrong": "迷思 2：只要打出元素反應，所有反應都能暴擊翻倍？",
+              "correct": "正解：錯誤！只有「蒸發」與「融化」等增幅反應是乘算原本傷害並能暴擊。感電、超載、超導、擴散等劇變反應是獨立傷害數值，完全不看雙暴，只看觸發角色等級與精通。"
+            },
+            {
+              "wrong": "迷思 3：把普通攻擊鍵按到底，所有角色都在打元素傷害？",
+              "correct": "正解：錯誤！除法器角色外，單手劍、雙手劍、長柄武器與弓箭手的普攻預設都是物理白字傷害。必須在技能附魔或特定機制下才會轉化為元素攻擊。"
+            }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C02" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C03" },
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C03" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C02" }
+      ]
+    },
+    {
+      "id": "slide-11-quiz",
+      "title": "提瓦特冒險家考核：實戰理解小測驗",
+      "objective": "透過 3 道情境題目檢核學習成效，並提供即時互動與權威解析",
+      "blocks": [
+        {
+          "type": "interactive-quiz",
+          "questions": [
+            {
+              "id": "q1",
+              "question": "問題 1：在完全不施放任何戰技與爆發的狀態下，下列哪一位角色的普通攻擊預設打出「純元素傷害」？",
+              "options": [
+                "A. 迪盧克（雙手劍）",
+                "B. 那維萊特（法器）",
+                "C. 琴（單手劍）",
+                "D. 雷電將軍（長柄武器）"
+              ],
+              "answerIndex": 1,
+              "explanation": "法器（Catalyst）是提瓦特唯一普通攻擊與重擊預設即為純元素傷害的武器類型；其餘近戰與弓手在無技能附魔時皆為物理白字傷害。",
+              "citation": { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C03" }
+            },
+            {
+              "id": "q2",
+              "question": "問題 2：下列哪一種元素反應屬於「增幅反應（Amplifying）」，能直接乘算角色基礎傷害並享受暴擊率與暴擊傷害加成？",
+              "options": [
+                "A. 超載（火 + 雷）",
+                "B. 感電（水 + 雷）",
+                "C. 蒸發（水 + 火）",
+                "D. 擴散（風 + 四元素）"
+              ],
+              "answerIndex": 2,
+              "explanation": "蒸發與融化屬於增幅反應，傷害直接乘算倍率（1.5x / 2.0x）並享有雙暴與精通增幅；感電、超載、擴散為劇變反應，無法直接暴擊。",
+              "citation": { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C02" }
+            },
+            {
+              "id": "q3",
+              "question": "問題 3：如果你隊伍中已經配置了一名需要長時間站場打輸出的主C角色，為了讓隊伍循環更流暢，接下來最應優先搭配哪類隊友？",
+              "options": [
+                "A. 再加入三個需要長時間站場的主C角色",
+                "B. 具備「脫手技能」的副輸出、增益輔助與提供生存的護盾/治療位",
+                "C. 全部放完全不帶元素的純物理角色",
+                "D. 四名完全同元素的角色以放棄所有元素反應"
+              ],
+              "answerIndex": 1,
+              "explanation": "標準四人隊伍黃金模型為「1 主輸出 + 1~2 副輸出/輔助 + 1 生存位」。後台脫手角色能在不爭奪前台站場時間的前提下穩定掛元素並提供增益保護。",
+              "citation": { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C01" }
+            }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C03" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C02" },
+        { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C01" }
+      ]
+    },
+    {
+      "id": "slide-12-summary-and-sources",
+      "title": "啟程吧，旅行者！課程總結與可查證來源清單",
+      "objective": "總結四大實戰口訣，提供 Wiki 深度閱讀導覽與完整文獻清單",
+      "blocks": [
+        {
+          "type": "summary-mantra",
+          "mantra": [
+            "【認清元素】七大元素各具特色，風岩後手擴散結晶。",
+            "【巧用反應】增幅看雙暴先後手，劇變看等級與精通。",
+            "【善選武裝】法器普攻自帶元素，近戰弓手附魔轉色。",
+            "【合理配隊】一主兩副一生存位，後台脫手循環不息。"
+          ]
+        },
+        {
+          "type": "wiki-navigation",
+          "title": "探索本站 Wiki 知識條目",
+          "links": [
+            { "text": "提瓦特七大元素系統", "path": "concepts/elements.md" },
+            { "text": "基礎元素反應機制", "path": "concepts/elemental-reactions.md" },
+            { "text": "提瓦特五大武器系統", "path": "concepts/weapons.md" },
+            { "text": "角色戰鬥定位分類", "path": "concepts/character-roles.md" },
+            { "text": "隊伍搭配基本原則", "path": "concepts/team-building.md" }
+          ]
+        },
+        {
+          "type": "sources-table",
+          "title": "本課程引證之來源清單（可追溯）",
+          "sources": [
+            { "id": "S006", "title": "Guide: Elemental Mechanics and Reactions - Part 1", "url": "https://www.hoyolab.com/article/26685514" },
+            { "id": "S007", "title": "Basic Elemental Reaction Guide", "url": "https://www.hoyolab.com/article/20993952" },
+            { "id": "S008", "title": "Weapons 101 for newbies! Guide", "url": "https://www.hoyolab.com/article/14109439" },
+            { "id": "S009", "title": "The Ultimate Genshin Impact Beginner's Guide - Roles & Combat", "url": "https://www.hoyolab.com/article/15729705" },
+            { "id": "S010", "title": "Team Building Guide - Archetypes and Synergies", "url": "https://www.hoyolab.com/article/35889606" },
+            { "id": "S001~S005", "title": "官方公告：芙寧娜、那維萊特、雷電將軍角色演示與版本更新", "url": "https://genshin.hoyoverse.com" },
+            { "id": "S011~S016", "title": "官方公告：琴、迪盧克、溫迪角色演示與蒙德角色介紹", "url": "https://genshin.hoyoverse.com" }
+          ]
+        }
+      ],
+      "citations": [
+        { "wikiPath": "wiki/concepts/elements.md", "sourceId": "S006", "claimId": "S006-C01" },
+        { "wikiPath": "wiki/concepts/elemental-reactions.md", "sourceId": "S007", "claimId": "S007-C01" },
+        { "wikiPath": "wiki/concepts/weapons.md", "sourceId": "S008", "claimId": "S008-C01" },
+        { "wikiPath": "wiki/concepts/character-roles.md", "sourceId": "S009", "claimId": "S009-C01" },
+        { "wikiPath": "wiki/concepts/team-building.md", "sourceId": "S010", "claimId": "S010-C01" }
+      ]
+    }
+  ]
+}

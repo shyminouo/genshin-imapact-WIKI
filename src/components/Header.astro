@@ -10,6 +10,7 @@ const current = Astro.url.pathname;
     </a>
     <nav aria-label="主選單" class="main-nav">
       <a href={sitePath()} aria-current={current === sitePath() ? 'page' : undefined}>角色圖鑑</a>
+      <a href={sitePath('tutorial/')} aria-current={current.includes('/tutorial/') ? 'page' : undefined}>新手教學</a>
       <a href={sitePath('about/')} aria-current={current.includes('/about/') ? 'page' : undefined}>關於專案</a>
     </nav>
   </div>
